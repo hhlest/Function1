@@ -5,15 +5,15 @@ import java.util.function.Predicate;
 public class Main {
     public static void main(String[] args) {
         Integer[] ar = new Integer[]{5,6,7,8,9,10};
-        Function<Integer[], Integer> funInt = (a) -> countPrimeNumbers(a);
+        Predicate<Integer> prInt = a -> isPrime(a);
+        Function<Integer[], Integer> funInt = (a) -> countPrimeNumbers(a, prInt);
         System.out.println(funInt.apply(ar));
     }
 
-    public static Integer countPrimeNumbers(Integer[] ar) {
+    public static Integer countPrimeNumbers(Integer[] ar, Predicate<Integer> pr) {
         int counter = 0;
-        Predicate<Integer> prInt = a -> isPrime(a);
         for (int i = 0; i < ar.length ; i++) {
-            if(prInt.test(ar[i])) {
+            if(pr.test(ar[i])) {
                 counter++;
             }
         }
